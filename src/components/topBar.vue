@@ -3,16 +3,17 @@
   <div class="top_wrapper">
     <mu-appbar z-depth='0' color='#fff'>
       <mu-flex justify-content='between' align-items='center'>
-        <mu-avatar slot='left' @click='showSlide' value='slide'>
-          <img :src="avatar" alt="">
+        <mu-avatar slot='left' value='slide'>
+          <img :src="avatar" alt="" @click='showSideBar_left(true)'>
         </mu-avatar>
-        <mu-icon value='search' color='rgba(0,0,0,.68)'></mu-icon>
+        <mu-icon value='search' color='rgba(0,0,0,.68)' @click='toSearch'></mu-icon>
       </mu-flex>
     </mu-appbar>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
   export default {
     name: 'topBar',
     data() {
@@ -21,8 +22,13 @@
       }
     },
     methods: {
-      showSlide(val) {
-        this.$router.push(val)
+      ...mapMutations(['showSideBar']),
+      showSideBar_left(flag) {
+        this.showSideBar({ flag })
+        console.log(flag)
+      },
+      toSearch() {
+        this.$router.push('/search')
       }
     }
   }

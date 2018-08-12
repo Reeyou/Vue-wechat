@@ -7,7 +7,7 @@
           <mu-list-item-action>
             <mu-icon value="group_add"></mu-icon>
           </mu-list-item-action>
-          <mu-list-item-title>新的朋友</mu-list-item-title>
+          <mu-list-item-title @click='add'>新的朋友{{count}}</mu-list-item-title>
         </mu-list-item>
          <mu-divider></mu-divider>
         <mu-list-item button :ripple="false">
@@ -46,7 +46,7 @@
           <mu-list-item button :ripple="false">
             <mu-list-item-action>
               <mu-avatar>
-                <img :src="item.avatar" alt="">
+                <img :src="item.avatar" alt="" @click="toPersonal">
               </mu-avatar>
             </mu-list-item-action>
             <mu-list-item-title>{{item.name}}</mu-list-item-title>
@@ -61,6 +61,7 @@
 <script>
 import axios from 'axios' //引入axios插件
 import bsScroll from 'better-scroll'//引入better-scroll 插件
+import { mapMutations, mapState } from 'vuex'
 export default {
   name: "topBar",
   data() {
@@ -69,6 +70,17 @@ export default {
       friends: [],
       load: '离线'
     }
+  },
+  computed: {
+    ...mapState({
+      count: state => state.search
+  })
+  },
+  methods: {
+    ...mapMutations(['add']),
+   toPersonal() {
+     this.$router.push('/personal')
+   }
   },
   created() {
     // 数据加载后调用axios获取json数据
@@ -79,7 +91,7 @@ export default {
       }
     })
   }
-};
+}
 </script>
 
 <style lang='stylus'>

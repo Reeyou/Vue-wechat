@@ -1,7 +1,10 @@
 <template>
   <div id="app">
+    <!-- <personal></personal> -->
+    <!-- <search></search> -->
     <topBar></topBar>
-    <footBar></footBar>
+    <sideBar></sideBar>
+    <footBar v-if="true"></footBar>
     <router-view></router-view>
   </div>
 </template>
@@ -9,11 +12,17 @@
 <script>
 import topBar from './components/topBar'
 import footBar from './components/footBar'
+import sideBar from './components/sideBar'
+import personal from './components/personal'
+import search from './components/search'
 export default {
   name: 'App',
   components: {
     topBar,
-    footBar
+    footBar,
+    sideBar,
+    personal,
+    search
   }
 }
 </script>

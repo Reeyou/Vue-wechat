@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import home from '@/components/home'
 import message from '@/components/message/message'
 import user from '@/components/user'
+import personal from '@/components/personal'
+import search from '@/components/search'
 import museUi from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css';
 
@@ -23,9 +25,16 @@ export default new Router({
     {
       path: '/home',
       component: home
-    },{
+    },
+    {
       path: '/user',
       component: user
+    },{
+      path: '/personal',
+      component: personal
+    }, {
+        path: '/search',
+        component: search
     }
   ]
 })
