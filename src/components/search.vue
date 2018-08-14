@@ -6,8 +6,8 @@
       <mu-icon button value="search"  slot="right" color='#000' class='right'/>
     </mu-appbar>
   
-    <mu-list>
-      <div v-for="(item,index) in friend" :key='index'>
+    <!-- <mu-list>
+      <div v-for="(item,index) in friends" :key='index'>
         <mu-list-item :title="item.name"
                       @click="showPersonindex_x(item._id)">
           <mu-avatar :src="item.avatar"
@@ -16,21 +16,46 @@
                    slot="right" />
         </mu-list-item>
       </div>
-    </mu-list>
+    </mu-list> -->
+    <div class="list">
+     <mu-list v-for="(item,index) in friends" :key='index'>
+    <mu-list-item avatar button :ripple="false">
+      <mu-list-item-action>
+        <mu-avatar>
+          <img :src='item.avatar'>
+        </mu-avatar>
+      </mu-list-item-action>
+      <mu-list-item-title>{{item.name}}</mu-list-item-title>
+      <mu-list-item-action>
+        <mu-icon value="chat"></mu-icon>
+      </mu-list-item-action>
+    </mu-list-item>
+     </mu-list>
+     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
-
+        value: '',
+        friends: []
       }
     },
     methods: {
       back() {
         this.$router.push('/home')
       }
+    },
+    created() {
+      axios.get('/user/friends').then(res => {
+        if(res.data.code === 0) {
+          this.friends = res.data.data;
+        }
+      })
+      console.log(this.value)
     }
   }
 </script>
@@ -58,8 +83,16 @@
       font-size 12px
     .mu-appbar-title
       line-height 40px
-  .mu-list 
-    padding 0
-
+  .list 
+    background #fff
+    margin-top 10px
+    .mu-list
+        padding 0
+        border-bottom 1px solid rgba(0,0,0,.04)
+        .mu-item-wrapper
+          padding 6px 0
+      .mu-list:last-child
+        border-bottom none
+  
 </style>
 

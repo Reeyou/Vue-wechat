@@ -3,8 +3,9 @@ const mutations = {
     state.sideBar.open = !state.sideBar.open
     state.sideBar.docked = !flag
   },
-  add: (state) => {
-    state.search += 1
+  getData: (state, data) => {
+    state.data = data;
+    state.isAjax = true
   }
 }
 

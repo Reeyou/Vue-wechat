@@ -2,7 +2,7 @@
 <template>
   <div class="msg">
     <mu-paper :z-depth="1" class="demo-list-wrap" >
-      <mu-list v-for='(item, index) in friends' :key='index' button ripple>
+      <mu-list v-for='(item, index) in friends' :key='index' button ripple @click='toChat'>
         <mu-list-item avatar button :ripple="true" >
           <mu-list-item-action>
             <mu-avatar color="blue">
@@ -36,10 +36,16 @@ export default {
     // 数据加载后调用axios获取json数据
     axios.get('/user/friends').then(res => {
       if(res.data.code === 0) {
+        console.log(res)
         this.friends = res.data.data
         console.log(this.friends)
       }
     })
+  },
+  methods: {
+    toChat() {
+      this.$router.push('/chat')
+    }
   }
 };
 </script>

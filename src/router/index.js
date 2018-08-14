@@ -5,6 +5,7 @@ import message from '@/components/message/message'
 import user from '@/components/user'
 import personal from '@/components/personal'
 import search from '@/components/search'
+import chat from '@/components/chat/chat'
 import museUi from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css';
 
@@ -35,6 +36,9 @@ export default new Router({
     }, {
         path: '/search',
         component: search
-    }
+    },{
+      path: '/chat',
+      component: chat
+  }
   ]
 })

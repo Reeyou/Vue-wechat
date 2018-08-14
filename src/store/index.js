@@ -11,7 +11,8 @@ let state = {
     open: false,
     docked: true
   },
-  search: 1
+  data: { self: {}, friends: [] },
+  isAjax: false
 }
 
 export default new Vuex.Store({
