@@ -2,7 +2,7 @@
 <template>
   <div class="msg">
     <mu-paper :z-depth="1" class="demo-list-wrap" >
-      <mu-list v-for='(item, index) in friends' :key='index' button ripple @click='toChat'>
+      <mu-list v-for='(item, index) in friends' :key='index' button ripple @click='toChat(item._id)'>
         <mu-list-item avatar button :ripple="true" >
           <mu-list-item-action>
             <mu-avatar color="blue">
@@ -11,7 +11,7 @@
           </mu-list-item-action>
           <mu-list-item-content>
             <mu-list-item-title>{{item.name}}</mu-list-item-title>
-            <mu-list-item-sub-title>{{msg}}</mu-list-item-sub-title>
+            <mu-list-item-sub-title>{{item.msg}}</mu-list-item-sub-title>
           </mu-list-item-content>
           <mu-list-item-action>
             <mu-list-item-after-text>{{time}}</mu-list-item-after-text>
@@ -24,27 +24,25 @@
 </template>
 <script>
 import axios from 'axios'
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
   data () {
     return {
-      msg: 'message',
-      friends: [],
-      time: '15:28',
+      time: '15:28'
     }
   },
-  created() {
-    // 数据加载后调用axios获取json数据
-    axios.get('/user/friends').then(res => {
-      if(res.data.code === 0) {
-        console.log(res)
-        this.friends = res.data.data
-        console.log(this.friends)
-      }
+  computed: {
+    ...mapState({
+      friends: state => state.data.friends,
     })
   },
   methods: {
-    toChat() {
-      this.$router.push('/chat')
+    ...mapMutations(['hideTopBar','getPersonalId']),
+    ...mapActions(['getMyData']),
+    toChat(val) {
+      this.$router.push('/chat'),
+      this.hideTopBar()
+      this.getPersonalId(val)
     }
   }
 };

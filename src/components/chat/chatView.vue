@@ -4,18 +4,25 @@
     <mu-list>
     <mu-list-item avatar button :ripple="false">
         <mu-avatar>
-          <img :src="avatar">
+          <img :src="userData.avatar">
         </mu-avatar>
-        <span class='log'>hsvdashbsncbxzm,cjksdnsdn</span>
+        <span class='log'>{{userData.msg}}</span>
       </mu-list-item>
     </mu-list>
   </div>
 </template>
 <script>
+import {mapGetters,mapMutations} from 'vuex'
 export default {
   data() {
     return {
-      avatar: '../../../static/images/avatar.jpg'
+      props: ['personalId']
+    }
+  },
+  computed: {
+    ...mapGetters(['friend']),
+    userData() {
+      return this.friend
     }
   }
 }

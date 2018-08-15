@@ -6,7 +6,7 @@
       @click='backToMsg'>
         <mu-icon value="keyboard_backspace" color='rgba(0,0,0,.68)'></mu-icon>
       </mu-button>
-      <p>{{self.name}}</p>
+      <p>{{userData.name}}</p>
       <mu-button icon slot="right">
         <mu-icon value="person" color='rgba(0,0,0,.68)'></mu-icon>
       </mu-button>
@@ -26,29 +26,33 @@
   </div>
 </template>
 <script>
-import { mapActions, mapMutations,mapState } from "vuex";
+import { mapActions, mapMutations,mapState,mapGetters } from "vuex";
 import chatView from './chatView'
 export default {
   components: {
     chatView
   },
   computed: {
-     ...mapState({
-      self: state => state.data.self
-    })
+     ...mapState(['personalId','data']),
+    ...mapGetters(['friend']),
+    userData() {
+      if(this.personalId === 0) {
+        return this.data.self
+      } else {
+        return this.friend
+      }
+    }
   },
   methods: {
-    ...mapMutations(["getData"]),
+    ...mapMutations(["getData",'hideTopBar']),
     ...mapActions(['getMyData']),
     backToMsg() {
       this.$router.push('/msg');
+      this.hideTopBar()
     }
   },
   created() {
-   if(Object.keys(this.self).length == 0) {
-     console.log(this.self)
-   }
-   console.log(0)
+    console.log(this.self)
   }
 };
 </script>

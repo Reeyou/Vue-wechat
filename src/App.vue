@@ -2,10 +2,10 @@
   <div id="app">
     <!-- <personal></personal> -->
     <!-- <search></search> -->
-    <!-- <topBar></topBar> -->
+    <topBar v-if="topBar"></topBar>
     <!-- <chat></chat> -->
-    <!-- <sideBar></sideBar> -->
-    <!-- <footBar v-if="true"></footBar> -->
+    <sideBar></sideBar>
+    <footBar v-if="footBar"></footBar>
     <router-view></router-view>
   </div>
 </template>
@@ -17,6 +17,7 @@ import sideBar from './components/sideBar'
 import personal from './components/personal'
 import search from './components/search'
 import chat from './components/chat/chat'
+import {mapState} from 'vuex'
 export default {
   name: 'App',
   components: {
@@ -26,8 +27,11 @@ export default {
     personal,
     search,
     chat
-  }
+  },
+  //获取全局保存的state数据，不然此处数据无定义
+  computed: mapState(['topBar','footBar'])
 }
+
 </script>
 
 <style>

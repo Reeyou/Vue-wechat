@@ -8,24 +8,48 @@
             <mu-icon value="chevron_left" color='#000' class='icon' size='36'></mu-icon>
             <span class="top">返回</span>
           </div>
-          <img :src="src" alt="">
+          <img :src="userData.avatar" alt="">
           
         </div>
         <div class="con">
           <div class="avatar">
-            <img :src="src" alt="">
+            <img :src="userData.avatar" alt="">
           </div>
-          <div class="name">Reeyou</div>
-          <div class="desc">hbsbvjxjsdjjsjjssjsjjs</div>
+          <div class="name">{{userData.name}}</div>
+          <div class="desc">{{userData.explain}}</div>
         </div>
     </div>
   <!-- 个人信息展示 -->
-    <mu-list class="list" v-for='(item ,index) in items' :key='index'>
+    <mu-list class="list">
       <mu-list-item button :ripple="false">
         <mu-list-item-action>
-          <mu-icon :value="item.icon"></mu-icon>
+          <mu-icon class='person' value="person_outline"></mu-icon>
         </mu-list-item-action>
-        <mu-list-item-title>电话</mu-list-item-title>
+        <mu-list-item-title>{{userData.name}}</mu-list-item-title>
+      </mu-list-item>
+      <mu-list-item button :ripple="false">
+        <mu-list-item-action>
+          <mu-icon class='phone' value="phone_iphone"></mu-icon>
+        </mu-list-item-action>
+        <mu-list-item-title>{{userData.phone}}</mu-list-item-title>
+      </mu-list-item>
+      <mu-list-item button :ripple="false">
+        <mu-list-item-action>
+          <mu-icon class='mail' value="mail"></mu-icon>
+        </mu-list-item-action>
+        <mu-list-item-title>{{userData.email}}</mu-list-item-title>
+      </mu-list-item>
+      <mu-list-item button :ripple="false">
+        <mu-list-item-action>
+          <mu-icon class='loaction' value="location_on"></mu-icon>
+        </mu-list-item-action>
+        <mu-list-item-title>{{userData.address}}</mu-list-item-title>
+      </mu-list-item>
+      <mu-list-item button :ripple="false">
+        <mu-list-item-action>
+          <mu-icon class='sort' value="sort"></mu-icon>
+        </mu-list-item-action>
+        <mu-list-item-title>{{userData.about}}</mu-list-item-title>
       </mu-list-item>
     </mu-list>
 
@@ -33,39 +57,33 @@
 </template>
 <script>
 import axios from 'axios'
+import {mapMutations,mapState,mapGetters} from 'vuex'
 export default {
   data() {
     return {
-      friends: [],
-      src: '/static/img/reeyou.jpg',
-      items: [{
-        icon: 'person_outline'
-      },{
-        icon: 'phone_iphone'
-      },{
-        icon: 'mail'
-      },{
-        icon: 'location_on'
-      },{
-        icon: 'sort'
-      }]
+      avatar: '/static/img/reeyou.jpg',
     }
   },
   name: 'personal',
-  methods: {
-    back() {
-      this.$router.push('/home')
-      console.log(11)
+  computed: {
+    ...mapState(['personalId','data']),
+    ...mapGetters(['friend']),
+    userData() {
+      if(this.personalId === 0) {
+        return this.data.self
+      } else {
+        return this.friend
+      }
     }
   },
- created() {
-    // 数据加载后调用axios获取json数据
-    axios.get('/user/friends').then(res => {
-      if(res.data.code === 0) {
-        this.friends = res.data.data
-      }
-    })
-  }
+  methods: {
+    ...mapMutations(['hideFootBar','hideTopBar']),
+    back() {
+      this.$router.push('/home')
+      this.hideFootBar()
+      this.hideTopBar()
+    }
+  },
 }
 </script>
 <style lang='stylus'>
@@ -75,7 +93,6 @@ body
     .content
       position relative
       margin-bottom 100px
-      z-index 333
       .bg
         max-width 100%
         position relative
@@ -88,7 +105,7 @@ body
           z-index 999
           .top
             font-size: 1rem
-            font-weight 600
+            font-weight 500
             margin-left -2px
             margin-top 2px
         &:after
@@ -108,9 +125,9 @@ body
         position absolute
         bottom -50px
         left 50%
-        width 200px
+        width 400px
         height 100px
-        margin-left -100px
+        margin-left -200px
         text-align center
         z-index 9999
         .avatar
@@ -118,8 +135,7 @@ body
           img
             max-width 80px
             border 2px solid #fff
-            border-radius 50%
-            
+            border-radius 50% 
         .name 
           margin-top 10px
           font-size 20px
@@ -128,7 +144,7 @@ body
           margin-top 10px
           color rgba(0,0,0,.68)
     .list
-      margin-top -20px
+      margin-top 20px
       
 </style>
 

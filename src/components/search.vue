@@ -2,8 +2,8 @@
   <div class="search">
     <mu-appbar :zDepth="0">
       <mu-icon button value="arrow_back" slot="left" color='#000' class='left' @click='back'></mu-icon>
-      <mu-text-field placeholder="搜索好友..." v-model="value" />
-      <mu-icon button value="search"  slot="right" color='#000' class='right'/>
+      <mu-text-field placeholder="搜索好友..." v-model="value" @input='input'/>
+      <mu-icon button value="person_outline"  slot="right" color='#000' class='right' @click='toUser'/>
     </mu-appbar>
   
     <!-- <mu-list>
@@ -37,6 +37,7 @@
 
 <script>
 import axios from 'axios'
+import {mapState,mapMutations} from 'vuex'
   export default {
     data() {
       return {
@@ -45,9 +46,39 @@ import axios from 'axios'
       }
     },
     methods: {
+      ...mapMutations(['hideTopBar','hideFootBar']),
       back() {
         this.$router.push('/home')
+        this.hideTopBar()
+        this.hideFootBar()
+      },
+      toUser() {
+        this.$router.push({path:'/personal',query:{personalId : 0}})
+      },
+      input(val) {
+      // 判断输入的值是否是数字
+      if (val === '') {
+        this.friend = []
+      } else if (isNaN(val)) {
+        // 不是数字
+        this.friend = this.friends.filter(x => {
+          if (x.name.indexOf(val) !== -1) {
+            return true
+          } else {
+            return false
+          }
+        })
+      } else {
+        // 是数字
+        this.friend = this.friends.filter(x => {
+          if (x.phone.indexOf(val) !== -1) {
+            return true
+          } else {
+            return false
+          }
+        })
       }
+    }
     },
     created() {
       axios.get('/user/friends').then(res => {
@@ -63,7 +94,6 @@ import axios from 'axios'
 <style lang='stylus'>
 .search
   position: absolute
-  z-index: 102
   top: 0
   left: 0
   width: 100%

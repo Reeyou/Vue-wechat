@@ -5,7 +5,15 @@ const mutations = {
   },
   getData: (state, data) => {
     state.data = data;
-    state.isAjax = true
+  },
+  getPersonalId: (state, personalId) => {
+    state.personalId = personalId
+  },
+  hideTopBar: (state) => {
+    state.topBar = !state.topBar
+  },
+  hideFootBar: (state) => {
+    state.footBar = !state.footBar
   }
 }
 

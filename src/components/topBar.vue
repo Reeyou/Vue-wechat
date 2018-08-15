@@ -22,13 +22,15 @@ import { mapMutations } from 'vuex'
       }
     },
     methods: {
-      ...mapMutations(['showSideBar']),
+      ...mapMutations(['showSideBar','hideTopBar','hideFootBar']),
       showSideBar_left(flag) {
         this.showSideBar({ flag })
         console.log(flag)
       },
       toSearch() {
         this.$router.push('/search')
+        this.hideTopBar()
+        this.hideFootBar()
       }
     }
   }

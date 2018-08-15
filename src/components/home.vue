@@ -46,7 +46,7 @@
           <mu-list-item button :ripple="false">
             <mu-list-item-action>
               <mu-avatar>
-                <img :src="item.avatar" alt="" @click="toPersonal">
+                <img :src="item.avatar" alt="" @click="toPersonal(item._id)">
               </mu-avatar>
             </mu-list-item-action>
             <mu-list-item-title>{{item.name}}</mu-list-item-title>
@@ -60,7 +60,7 @@
 
 <script>
 import axios from 'axios' //引入axios插件
-import bsScroll from 'better-scroll'//引入better-scroll 插件
+// import bsScroll from 'better-scroll'//引入better-scroll 插件
 import { mapMutations, mapState } from 'vuex'
 export default {
   name: "topBar",
@@ -77,9 +77,12 @@ export default {
   })
   },
   methods: {
-    ...mapMutations(['add']),
-   toPersonal() {
-     this.$router.push('/personal')
+    ...mapMutations(['add','hideFootBar','hideTopBar','getPersonalId']),
+   toPersonal(val) {
+     this.$router.push('/personal'),
+     this.hideFootBar()
+     this.hideTopBar()
+     this.getPersonalId(val)
    }
   },
   created() {
@@ -87,7 +90,7 @@ export default {
     axios.get('/user/friends').then(res => {
       if(res.data.code === 0) {
         this.friends = res.data.data
-        console.log(this.friends)
+        // console.log(this.friends)
       }
     })
   }
