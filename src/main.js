@@ -6,9 +6,12 @@ import router from './router'
 import '../mock/index'
 import axios from 'axios'
 import store from './store'
+import museUi from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css';
 
 Vue.config.productionTip = false
 Vue.prototype.$ajax = axios
+Vue.use(museUi)
 
 /* eslint-disable no-new */
 new Vue({

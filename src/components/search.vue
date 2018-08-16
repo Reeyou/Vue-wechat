@@ -5,20 +5,9 @@
       <mu-text-field placeholder="搜索好友..." v-model="value" @input='input'/>
       <mu-icon button value="person_outline"  slot="right" color='#000' class='right' @click='toUser'/>
     </mu-appbar>
-  
-    <!-- <mu-list>
-      <div v-for="(item,index) in friends" :key='index'>
-        <mu-list-item :title="item.name"
-                      @click="showPersonindex_x(item._id)">
-          <mu-avatar :src="item.avatar"
-                     slot="leftAvatar" />
-          <mu-icon value="chat_bubble"
-                   slot="right" />
-        </mu-list-item>
-      </div>
-    </mu-list> -->
+
     <div class="list">
-     <mu-list v-for="(item,index) in friends" :key='index'>
+     <mu-list v-for="(item,index) in friend" :key='index'>
     <mu-list-item avatar button :ripple="false">
       <mu-list-item-action>
         <mu-avatar>
@@ -42,7 +31,7 @@ import {mapState,mapMutations} from 'vuex'
     data() {
       return {
         value: '',
-        friends: []
+        friend: []//初始化匹配渲染的数据
       }
     },
     methods: {
@@ -57,12 +46,10 @@ import {mapState,mapMutations} from 'vuex'
       },
       input(val) {
       // 判断输入的值是否是数字
-      if (val === '') {
-        this.friend = []
-      } else if (isNaN(val)) {
+       if (isNaN(val)) {
         // 不是数字
         this.friend = this.friends.filter(x => {
-          if (x.name.indexOf(val) !== -1) {
+          if (x.name.indexOf(val) !== -1) {//是否存在，存在即匹配
             return true
           } else {
             return false
@@ -71,7 +58,7 @@ import {mapState,mapMutations} from 'vuex'
       } else {
         // 是数字
         this.friend = this.friends.filter(x => {
-          if (x.phone.indexOf(val) !== -1) {
+          if (x.phone.indexOf(val) !== -1) {//同上
             return true
           } else {
             return false

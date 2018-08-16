@@ -6,11 +6,10 @@ import user from '@/components/user'
 import personal from '@/components/personal'
 import search from '@/components/search'
 import chat from '@/components/chat/chat'
-import museUi from 'muse-ui'
-import 'muse-ui/dist/muse-ui.css';
+
 
 Vue.use(Router)
-Vue.use(museUi)
+
 
 export default new Router({
   routes: [
