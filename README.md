@@ -43,19 +43,19 @@
 
 **miniQQ部分截图演示**
 
-# 主页
+#### 主页
 ![主页部分](./static/screenshot/home.jpg)
-# detail
+#### detail
 ![detail](./static/screenshot/detail.jpg)
-# 信息
+#### 信息
 ![message](./static/screenshot/message.jpg)
-# 个人信息
+#### 个人信息
 ![user](./static/screenshot/user.jpg)
-# 侧边栏
+#### 侧边栏
 ![slider](./static/screenshot/slider.jpg)
-# 搜索
+#### 搜索
 ![slider](./static/screenshot/search.jpg)
-# 聊天
+#### 聊天
 ![chat](./static/screenshot/chat.jpg)
 ![chat](./static/screenshot/chat1.jpg)
 
