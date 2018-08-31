@@ -1,7 +1,7 @@
 {
     "self": {
         "_id": 0,
-        "avatar": "/static/images/avatar.jpg",
+        "avatar": "./static/images/avatar.jpg",
         "bg": "/static/images/bg.jpg",
         "birthday": "20/4/96",
         "name": "Ree you",
@@ -14,7 +14,7 @@
     },
     "friend": [
         {   "_id": 1,
-            "avatar": "/static/images/avatar1.jpg",
+            "avatar": "./static/images/avatar1.jpg",
             "birthday": "11/3/95",
             "name": "Pate Tran",
             "gender": "female",
@@ -27,7 +27,7 @@
         },
         {   
             "_id": 2,
-            "avatar": "/static/images/avatar2.jpg",
+            "avatar": "./static/images/avatar2.jpg",
             "birthday": "21/6/97",
             "name": "Cardenas Burnett",
             "gender": "female",
@@ -40,7 +40,7 @@
         },
         {   
             "_id": 3,
-            "avatar": "/static/images/avatar3.jpg",
+            "avatar": "./static/images/avatar3.jpg",
             "birthday": "3/3/99",
             "name": "Imelda Horne",
             "gender": "female",
@@ -53,7 +53,7 @@
         },
         {   
             "_id": 4,
-            "avatar": "/static/images/avatar4.jpg",
+            "avatar": "./static/images/avatar4.jpg",
             "birthday": "3/3/99",
             "name": "Prelda jobs",
             "gender": "female",
@@ -66,7 +66,7 @@
         },
         {   
             "_id": 5,
-            "avatar": "/static/images/avatar5.jpg",
+            "avatar": "./static/images/avatar5.jpg",
             "birthday": "3/3/99",
             "name": "Pr Yeild",
             "gender": "male",
@@ -79,7 +79,7 @@
         },
         {   
             "_id": 6,
-            "avatar": "/static/images/avatar6.jpg",
+            "avatar": "./static/images/avatar6.jpg",
             "birthday": "3/3/99",
             "name": "Sk Laboris",
             "gender": "male",
@@ -92,7 +92,7 @@
         },
         {   
             "_id": 7,
-            "avatar": "/static/images/avatar7.jpg",
+            "avatar": "./static/images/avatar7.jpg",
             "birthday": "3/3/99",
             "name": "Sum Seri",
             "gender": "male",
@@ -105,7 +105,7 @@
         },
         {   
             "_id": 8,
-            "avatar": "/static/images/avatar8.jpg",
+            "avatar": "./static/images/avatar8.jpg",
             "birthday": "3/3/99",
             "name": "Hit Poly",
             "gender": "male",
